@@ -25,7 +25,7 @@ import joblib
 import streamlit as st
 
 # 2. Load Dataset
-data = pd.read_csv('data_clean.csv')
+data = pd.read_csv('https://raw.githubusercontent.com/Ezraliano/submission_akhir_data_science/refs/heads/main/data_clean.csv')
 data.head()
 
 # 3. Exploratory Data Analysis (EDA)
