@@ -111,3 +111,24 @@ plt.savefig('feature_importance.png')
 
 # Bagian Streamlit
 st.title("Prediksi Status Dropout Mahasiswa")
+st.write("Silakan masukkan data mahasiswa di bawah ini:")
+
+# Ambil kolom-kolom input dari data
+user_input = {}
+for col in X.columns:
+    if col in categorical_cols:
+        options = data[col].unique().tolist()
+        user_input[col] = st.selectbox(f"{col}", options)
+    else:
+        user_input[col] = st.number_input(f"{col}", float(data[col].min()), float(data[col].max()))
+
+# Jika tombol ditekan
+if st.button("Prediksi"):
+    # Buat dataframe dari input
+    input_df = pd.DataFrame([user_input])
+    
+    # Lakukan prediksi
+    prediction = model_pipeline.predict(input_df)[0]
+    
+    # Tampilkan hasil
+    st.success(f"Status Mahasiswa yang Diprediksi: **{prediction}**")
